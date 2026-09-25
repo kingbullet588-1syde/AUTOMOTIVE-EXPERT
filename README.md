@@ -47,6 +47,12 @@ The vehicle-coverage section also includes selected make marks from [Simple Icon
 
 The public visual system uses a red-and-white palette with dark contrast sections for readability and a more direct workshop feel.
 
+## Booking and health-check notes
+
+The booking form now captures the customer's vehicle year, registration, preferred time, and concern. It creates a local `AE-YYYY-XXXX` booking reference and offers a WhatsApp follow-up after submission. The concern is treated as customer-reported information only; the site does not claim to diagnose a mechanical fault.
+
+The health tracker also records the odometer at the last service. Its estimate uses the earlier of 10,000 km from that service reading or 180 days from the last service date, with current mileage and average daily kilometres used to estimate status.
+
 ## Local admin workspace
 
 Open `/admin` (for example `http://localhost:5173/admin`) for the service desk. It includes:

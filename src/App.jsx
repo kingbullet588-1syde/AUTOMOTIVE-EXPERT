@@ -43,7 +43,9 @@ const defaultForm = {
   make: '',
   model: '',
   year: '',
+  registration: '',
   odometer: '',
+  lastServiceOdometer: '',
   lastService: '',
   dailyKm: '',
 }
@@ -56,14 +58,15 @@ function calculateHealth(form) {
   const odo = Number(form.odometer)
   const daily = Number(form.dailyKm)
   const last = form.lastService ? new Date(`${form.lastService}T12:00:00`) : null
-  if (!odo || !daily || !last || Number.isNaN(last.getTime())) return null
+  const lastOdo = Number(form.lastServiceOdometer)
+  if (!odo || !lastOdo || !daily || !last || Number.isNaN(last.getTime())) return null
 
   const kmDate = new Date(last)
   kmDate.setDate(kmDate.getDate() + Math.ceil(10000 / daily))
   const timeDate = new Date(last)
   timeDate.setDate(timeDate.getDate() + 180)
   const nextDate = kmDate < timeDate ? kmDate : timeDate
-  const nextOdo = odo + 10000
+  const nextOdo = lastOdo + 10000
   const today = new Date()
   const dateProgress = Math.max(0, (today - last) / (timeDate - last))
   const kmProgress = Math.max(0, (odo + daily * Math.max(0, (today - last) / 86400000) - odo) / 10000)
@@ -256,7 +259,7 @@ function HealthTracker({ open, onClose }) {
     localStorage.setItem(TRACKER_KEY, JSON.stringify(form))
     setSubmitted(true)
   }
-  const bookingText = `Hello Automotive Expert, I would like to book a service health check for my ${form.year} ${form.make} ${form.model}. Current mileage: ${Number(form.odometer).toLocaleString()} km.`
+  const bookingText = `Hello Automotive Expert, I would like to book a service health check.\nVehicle: ${form.year} ${form.make} ${form.model}\nRegistration: ${form.registration || 'Not provided'}\nCurrent mileage: ${Number(form.odometer).toLocaleString()} km\nNext service estimate: ${result ? `${result.nextOdo.toLocaleString()} km or ${formatDate(result.nextDate)}` : 'To be confirmed after review'}`
   const whatsappUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(bookingText)}`
 
   return (
@@ -274,7 +277,9 @@ function HealthTracker({ open, onClose }) {
               <label>Make<input required value={form.make} onChange={update('make')} placeholder="Toyota" /></label>
               <label>Model<input required value={form.model} onChange={update('model')} placeholder="Harrier" /></label>
               <label>Year<input required type="number" min="1950" max="2030" value={form.year} onChange={update('year')} placeholder="2018" /></label>
+              <label>Registration<input required value={form.registration} onChange={update('registration')} placeholder="UAX 123A" /></label>
               <label>Current odometer (km)<input required type="number" min="0" value={form.odometer} onChange={update('odometer')} placeholder="82,400" /></label>
+              <label>Odometer at last service<input required type="number" min="0" value={form.lastServiceOdometer} onChange={update('lastServiceOdometer')} placeholder="72,400" /></label>
               <label>Last service date<input required type="date" value={form.lastService} onChange={update('lastService')} /></label>
               <label>Average daily km<input required type="number" min="1" value={form.dailyKm} onChange={update('dailyKm')} placeholder="35" /></label>
             </div>
@@ -310,10 +315,14 @@ function App() {
       id: `booking-${Date.now()}`,
       name: data.get('name'),
       phone: data.get('phone'),
-      vehicle: `${data.get('make')} ${data.get('model')}`,
+      vehicle: `${data.get('make')} ${data.get('model')} ${data.get('year')}`,
+      registration: data.get('registration'),
       service: data.get('service'),
+      concern: data.get('concern'),
       date: data.get('date'),
+      time: data.get('time'),
       status: 'New',
+      bookingId: `AE-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 10000)).padStart(4, '0')}`,
     }
     const existing = readBookings()
     localStorage.setItem(BOOKINGS_KEY, JSON.stringify([...existing, booking]))
@@ -405,7 +414,7 @@ function App() {
 
         <section className="booking section" id="booking">
           <div className="booking-copy"><p className="eyebrow">Book a visit</p><h2>Good service<br /><i>starts here.</i></h2><p>Tell us what your vehicle needs and when you would like to come in. We’ll confirm the details by phone or WhatsApp.</p><div className="booking-mini"><span className="mini-icon"><Icon name="calendar" /></span><span><strong>Prefer a quick answer?</strong><a href={`https://wa.me/${PHONE}?text=${encodeURIComponent('Hello Automotive Expert, I would like to book an appointment.')}`} target="_blank" rel="noreferrer">Message us on WhatsApp →</a></span></div></div>
-          <div className="booking-card">{bookingSent ? <div className="booking-success"><div className="status-orb green"><Icon name="check" /></div><h3>Request received locally.</h3><p>Your appointment is saved in this browser. We’ll use your contact details to confirm the visit.</p><button className="button button-gold" onClick={() => setBookingSent(false)}>Submit another request</button></div> : <form className="booking-form" onSubmit={submitBooking}><div className="form-heading"><span>Appointment request</span><small>All fields marked * are required</small></div><div className="form-grid"><label>Full name *<input name="name" required placeholder="Your name" /></label><label>Phone / WhatsApp *<input name="phone" required type="tel" placeholder="+256 ..." /></label><label>Vehicle make *<input name="make" required placeholder="Toyota" /></label><label>Vehicle model *<input name="model" required placeholder="Harrier" /></label><label>Service needed *<select name="service" required defaultValue=""><option value="" disabled>Choose a service</option>{services.map(([, title]) => <option key={title}>{title}</option>)}</select></label><label>Preferred date<input name="date" type="date" /></label></div><button className="button button-gold" type="submit">Request appointment <Icon name="arrow" /></button><small className="local-note">Local demo: this request stays in your browser until a backend is connected.</small></form>}</div>
+          <div className="booking-card">{bookingSent ? <div className="booking-success"><div className="status-orb green"><Icon name="check" /></div><h3>Booking request received.</h3><p>Your request is saved locally. We’ll confirm the details by phone or WhatsApp after reviewing your concern.</p><a className="button button-gold" href={`https://wa.me/${PHONE}?text=${encodeURIComponent('Hello Automotive Expert, I have submitted a booking request and would like confirmation.')}`} target="_blank" rel="noreferrer">Send WhatsApp follow-up <Icon name="chat" /></a><button className="button button-quiet" onClick={() => setBookingSent(false)}>Submit another request</button></div> : <form className="booking-form" onSubmit={submitBooking}><div className="form-heading"><span>Appointment request</span><small>All fields marked * are required</small></div><div className="form-grid"><label>Full name *<input name="name" required placeholder="Your name" /></label><label>Phone / WhatsApp *<input name="phone" required type="tel" placeholder="+256 ..." /></label><label>Vehicle make *<input name="make" required placeholder="Toyota" /></label><label>Vehicle model *<input name="model" required placeholder="Harrier" /></label><label>Year *<input name="year" required type="number" min="1950" max="2030" placeholder="2018" /></label><label>Registration *<input name="registration" required placeholder="UAX 123A" /></label><label>Service needed *<select name="service" required defaultValue=""><option value="" disabled>Choose a service</option>{services.map(([, title]) => <option key={title}>{title}</option>)}</select></label><label>Preferred date<input name="date" type="date" /></label><label>Preferred time<select name="time" defaultValue=""><option value="">Any time</option><option>Morning</option><option>Afternoon</option></select></label><label className="form-wide">What are you experiencing? *<textarea name="concern" required rows="3" placeholder="Tell us what you notice. Your information helps us prepare before inspection." /></label></div><button className="button button-gold" type="submit">Request appointment <Icon name="arrow" /></button><small className="local-note">Local demo: this request stays in your browser until a backend is connected.</small></form>}</div>
         </section>
 
         <section className="contact section" id="contact">
