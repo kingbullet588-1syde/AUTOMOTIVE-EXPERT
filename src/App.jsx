@@ -202,13 +202,13 @@ function AdminGate({ onExit }) {
   }
 
   if (!access) {
-    return <main className="admin-shell admin-gate"><div className="admin-gate-card"><a className="brand" href="/"><img src="/assets/automotive-expert-logo.png" alt="Automotive Expert logo" /><span><strong>Automotive</strong><em>Expert</em></span></a><p className="eyebrow">Local workspace</p><h1>Welcome to the<br /><i>service desk.</i></h1><p>This is a frontend demo workspace for managing appointments saved in this browser. No backend account or customer data is connected.</p><form onSubmit={signIn}><label>Email address<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="steven@example.com" aria-describedby="admin-note" /></label>{error && <div className="form-error" role="alert">{error}</div>}<button className="button button-gold" type="submit">Enter demo workspace <Icon name="arrow" /></button></form><small id="admin-note">Demo access only — any email works locally.</small><a className="admin-back-link" href="/">← Back to public site</a></div></main>
+    return <main className="admin-shell admin-gate"><div className="admin-gate-card"><a className="brand" href="/"><img src="/assets/automotive-expert-logo.png" alt="Automotive Expert logo" /><span><strong>AUTOMOTIVE</strong><em>EXPERT</em></span></a><p className="eyebrow">Local workspace</p><h1>Welcome to the<br /><i>service desk.</i></h1><p>This is a frontend demo workspace for managing appointments saved in this browser. No backend account or customer data is connected.</p><form onSubmit={signIn}><label>Email address<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="steven@example.com" aria-describedby="admin-note" /></label>{error && <div className="form-error" role="alert">{error}</div>}<button className="button button-gold" type="submit">Enter demo workspace <Icon name="arrow" /></button></form><small id="admin-note">Demo access only — any email works locally.</small><a className="admin-back-link" href="/">← Back to public site</a></div></main>
   }
 
   const counts = adminStatuses.reduce((acc, status) => ({ ...acc, [status]: bookings.filter((booking) => booking.status === status).length }), {})
   return <div className="admin-shell">
     <aside className="admin-sidebar">
-      <a className="brand" href="/"><img src="/assets/automotive-expert-logo.png" alt="Automotive Expert logo" /><span><strong>Automotive</strong><em>Expert</em></span></a>
+      <a className="brand" href="/"><img src="/assets/automotive-expert-logo.png" alt="Automotive Expert logo" /><span><strong>AUTOMOTIVE</strong><em>EXPERT</em></span></a>
       <div className="admin-context"><span className="live-dot" /> Demo / local workspace</div>
       <nav className="admin-nav" aria-label="Admin navigation">{['Overview', 'Appointments', 'Customers & vehicles', 'Uploads', 'Reminders', 'Inventory'].map((item) => <button className={activeView === item ? 'active' : ''} key={item} onClick={() => setActiveView(item)}>{item}</button>)}</nav>
       <button className="admin-exit" onClick={signOut}><Icon name="logout" /> Sign out demo</button>
@@ -325,7 +325,7 @@ function App() {
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Automotive Expert home">
           <img src="/assets/automotive-expert-logo.png" alt="Automotive Expert logo" />
-          <span><strong>Automotive</strong><em>Expert</em></span>
+          <span><strong>AUTOMOTIVE</strong><em>EXPERT</em></span>
         </a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation">Menu</button>
         <nav className={menuOpen ? 'nav-links is-open' : 'nav-links'}>
@@ -413,7 +413,7 @@ function App() {
           <div className="contact-details"><div className="detail"><Icon name="pin" /><span><small>Find us</small>Banamwaya @ Total Energies</span></div><div className="detail"><Icon name="phone" /><span><small>Book by phone or WhatsApp</small><a href={`tel:${PHONE}`}>{DISPLAY_PHONE}</a><a href={`tel:${ALT_PHONE.replace(/\s/g, '')}`}>{ALT_PHONE}</a></span></div></div>
         </section>
       </main>
-      <footer><a className="brand" href="#top"><img src="/assets/automotive-expert-logo.png" alt="Automotive Expert logo" /><span><strong>Automotive</strong><em>Expert</em></span></a><span>© 2024 Automotive Expert. Built for better drives.</span><a href="#top">Back to top ↑</a></footer>
+      <footer><a className="brand" href="#top"><img src="/assets/automotive-expert-logo.png" alt="Automotive Expert logo" /><span><strong>AUTOMOTIVE</strong><em>EXPERT</em></span></a><span>© 2024 Automotive Expert. Built for better drives.</span><a href="#top">Back to top ↑</a></footer>
       <HealthTracker open={trackerOpen} onClose={() => setTrackerOpen(false)} />
       <div className="mobile-cta"><a href={`tel:${PHONE}`}><Icon name="phone" /> Call</a><button onClick={() => document.getElementById('booking')?.scrollIntoView()}><Icon name="calendar" /> Book an appointment</button></div>
     </>
