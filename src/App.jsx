@@ -372,8 +372,13 @@ function App() {
         </section>
 
         <section className="capability section">
-          <div className="capability-image"><img src="/assets/mechanic-workshop.jpg" alt="Automotive Expert workshop capability" /></div>
+          <div className="capability-image"><img src="/assets/wamuco-workshop-bg1.jpg" alt="Workshop equipment and service environment" /></div>
           <div className="capability-copy"><p className="eyebrow">Technical capability</p><h2>One workshop for<br /><i>the full picture.</i></h2><p>From wheels and brakes to fluids, climate, drivetrain and emissions, Automotive Expert brings the vehicle’s connected systems into one conversation.</p><div className="capability-tags"><span>Inspection</span><span>Diagnosis</span><span>Repair</span><span>Maintenance</span></div></div>
+        </section>
+
+        <section className="workshop-note section">
+          <div><p className="eyebrow">A practical workshop mindset</p><h2>Clear categories.<br /><i>Careful next steps.</i></h2></div>
+          <div className="workshop-note-copy"><img src="/assets/wamuco-service-bg2.jpg" alt="Automotive service workshop detail" /><p>We’ve shaped Automotive Expert around the way drivers actually ask for help: identify the concern, connect it to the right system, and make the next action easy to understand.</p></div>
         </section>
 
         <section className="booking section" id="booking">

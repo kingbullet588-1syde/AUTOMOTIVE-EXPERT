@@ -33,6 +33,15 @@ npm run preview
 
 The health tracker stores the last submitted vehicle details in the browser's local storage under `automotive-expert-health-check`. Its WhatsApp action opens a prefilled booking message to +256 780 963 633.
 
+## Authorized reference material
+
+Two workshop photographs are included as authorized source material from [Wamuco Motors](https://www.wamuco.co.ug/):
+
+- `public/assets/wamuco-workshop-bg1.jpg` — sourced from `/images/demo/slider/bg1.jpg`
+- `public/assets/wamuco-service-bg2.jpg` — sourced from `/images/demo/slider/bg2.jpg`
+
+They are used only as supporting workshop imagery within Automotive Expert's own branded experience. The Automotive Expert copy, contacts, logo, and service flow remain distinct; Wamuco-specific history, claims, branding, and contact details are not presented as Automotive Expert facts.
+
 ## Local admin workspace
 
 Open `/admin` (for example `http://localhost:5173/admin`) for the service desk. It includes:
