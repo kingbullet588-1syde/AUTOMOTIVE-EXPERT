@@ -21,7 +21,7 @@ The service is based at Banamwaya @ Total Energies. Visitors may arrive from a p
 The first web version includes service information, contact actions, and a client-side car health estimate based on a 10,000 km or 180-day service rule. No diagnostic, pricing, or customer performance claims should be fabricated.
 
 ## Brand Commitments
-Automotive Expert. Slogan: “CONCERN, CAUSE, CORRECTION.” Dark luxury palette with metallic gold accents. Primary contacts: Ntege Steven (Mechanic), stevenclif99@gmail.com, +256780963633, +256752561372.
+Automotive Expert. Slogan: “CONCERN, CAUSE, CORRECTION.” Dark luxury palette with metallic gold accents. Primary contacts: Ntege Steven (Mechanic), +256752561372, +256780963633.
 
 ## Evidence on Hand
 Supplied images in public/assets: automotive-experts-logo.jpg, mechanic-portrait.jpg, mechanic-alignment.jpg, mechanic-workshop.jpg.

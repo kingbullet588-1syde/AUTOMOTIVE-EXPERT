@@ -2,9 +2,9 @@ import React from 'react'
 
 const { useEffect, useMemo, useState } = React
 
-const PHONE = '256780963633'
-const DISPLAY_PHONE = '+256 780 963 633'
-const ALT_PHONE = '+256 752 561 372'
+const PHONE = '256752561372'
+const DISPLAY_PHONE = '+256 752 561 372'
+const ALT_PHONE = '+256 780 963 633'
 const TRACKER_KEY = 'automotive-expert-health-check'
 const BOOKINGS_KEY = 'automotive-expert-bookings'
 const ADMIN_SESSION_KEY = 'automotive-expert-admin-demo'
@@ -342,7 +342,7 @@ function App() {
               <button className="button button-gold" onClick={openTracker}>Check car health <Icon name="arrow" /></button>
               <a className="text-link" href={`tel:${PHONE}`}>Call {DISPLAY_PHONE} <Icon name="phone" /></a>
             </div>
-            <div className="hero-support"><span><small>Talk to Steven</small><a href={`tel:${PHONE}`}>{DISPLAY_PHONE}</a></span><span><small>Email</small><a href="mailto:stevenclif99@gmail.com">stevenclif99@gmail.com</a></span></div>
+            <div className="hero-support"><span><small>Bookings &amp; WhatsApp</small><a href={`tel:${PHONE}`}>{DISPLAY_PHONE}</a></span><span><small>Call for support</small><a href={`tel:${ALT_PHONE.replace(/\s/g, '')}`}>{ALT_PHONE}</a></span></div>
             <div className="hero-proof"><span className="proof-line" /><span>CONCERN, CAUSE, CORRECTION.</span></div>
           </div>
           <div className="hero-visual">
@@ -381,6 +381,11 @@ function App() {
           <div className="workshop-note-copy"><img src="/assets/wamuco-service-bg2.jpg" alt="Automotive service workshop detail" /><p>We’ve shaped Automotive Expert around the way drivers actually ask for help: identify the concern, connect it to the right system, and make the next action easy to understand.</p></div>
         </section>
 
+        <section className="coverage section">
+          <div><p className="eyebrow">Vehicle coverage</p><h2>Familiar with the<br /><i>cars on Kampala roads.</i></h2><p>Bring your vehicle, its symptoms, or its service history. We can start with a practical assessment across common passenger and utility vehicle systems.</p></div>
+          <div className="coverage-list">{['Toyota', 'Mercedes-Benz', 'BMW', 'Honda', 'Nissan', 'Volvo', 'Lexus', 'Jeep', 'Isuzu', 'Land Rover', 'Audi'].map((make) => <span key={make}>{make}</span>)}</div>
+        </section>
+
         <section className="booking section" id="booking">
           <div className="booking-copy"><p className="eyebrow">Book a visit</p><h2>Good service<br /><i>starts here.</i></h2><p>Tell us what your vehicle needs and when you would like to come in. We’ll confirm the details by phone or WhatsApp.</p><div className="booking-mini"><span className="mini-icon"><Icon name="calendar" /></span><span><strong>Prefer a quick answer?</strong><a href={`https://wa.me/${PHONE}?text=${encodeURIComponent('Hello Automotive Expert, I would like to book an appointment.')}`} target="_blank" rel="noreferrer">Message us on WhatsApp →</a></span></div></div>
           <div className="booking-card">{bookingSent ? <div className="booking-success"><div className="status-orb green"><Icon name="check" /></div><h3>Request received locally.</h3><p>Your appointment is saved in this browser. We’ll use your contact details to confirm the visit.</p><button className="button button-gold" onClick={() => setBookingSent(false)}>Submit another request</button></div> : <form className="booking-form" onSubmit={submitBooking}><div className="form-heading"><span>Appointment request</span><small>All fields marked * are required</small></div><div className="form-grid"><label>Full name *<input name="name" required placeholder="Your name" /></label><label>Phone / WhatsApp *<input name="phone" required type="tel" placeholder="+256 ..." /></label><label>Vehicle make *<input name="make" required placeholder="Toyota" /></label><label>Vehicle model *<input name="model" required placeholder="Harrier" /></label><label>Service needed *<select name="service" required defaultValue=""><option value="" disabled>Choose a service</option>{services.map(([, title]) => <option key={title}>{title}</option>)}</select></label><label>Preferred date<input name="date" type="date" /></label></div><button className="button button-gold" type="submit">Request appointment <Icon name="arrow" /></button><small className="local-note">Local demo: this request stays in your browser until a backend is connected.</small></form>}</div>
@@ -388,7 +393,7 @@ function App() {
 
         <section className="contact section" id="contact">
           <div className="contact-panel"><p className="eyebrow">Come see us</p><h2>Your car has places<br /><i>to go.</i></h2><p>Let’s make sure it gets there. Visit us at Banamwaya @ Total Energies for thoughtful, capable vehicle care.</p><a className="button button-gold" href={`https://wa.me/${PHONE}?text=${encodeURIComponent('Hello Automotive Expert, I would like to book a service.')}`} target="_blank" rel="noreferrer">Start a conversation <Icon name="chat" /></a></div>
-          <div className="contact-details"><div className="detail"><Icon name="pin" /><span><small>Find us</small>Banamwaya @ Total Energies</span></div><div className="detail"><Icon name="phone" /><span><small>Call Steven</small><a href={`tel:${PHONE}`}>{DISPLAY_PHONE}</a><a href="tel:+256752561372">{ALT_PHONE}</a></span></div><div className="detail"><Icon name="chat" /><span><small>Email</small><a href="mailto:stevenclif99@gmail.com">stevenclif99@gmail.com</a></span></div></div>
+          <div className="contact-details"><div className="detail"><Icon name="pin" /><span><small>Find us</small>Banamwaya @ Total Energies</span></div><div className="detail"><Icon name="phone" /><span><small>Book by phone or WhatsApp</small><a href={`tel:${PHONE}`}>{DISPLAY_PHONE}</a><a href={`tel:${ALT_PHONE.replace(/\s/g, '')}`}>{ALT_PHONE}</a></span></div></div>
         </section>
       </main>
       <footer><a className="brand" href="#top"><img src="/assets/automotive-experts-logo.jpg" alt="" /><span><strong>Automotive</strong><em>Expert</em></span></a><span>© 2024 Automotive Expert. Built for better drives.</span><a href="#top">Back to top ↑</a></footer>

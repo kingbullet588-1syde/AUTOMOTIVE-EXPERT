@@ -31,7 +31,7 @@ npm run preview
 └── package.json
 ```
 
-The health tracker stores the last submitted vehicle details in the browser's local storage under `automotive-expert-health-check`. Its WhatsApp action opens a prefilled booking message to +256 780 963 633.
+The health tracker stores the last submitted vehicle details in the browser's local storage under `automotive-expert-health-check`. Its WhatsApp action opens a prefilled booking message to +256 752 561 372.
 
 ## Authorized reference material
 
