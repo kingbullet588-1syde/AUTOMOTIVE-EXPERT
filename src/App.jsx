@@ -23,6 +23,13 @@ const services = [
   ['10', 'Preventive maintenance', 'Timely checks that help you stay ahead of avoidable problems.'],
 ]
 
+const vehicleBrands = [
+  ['Toyota', 'brand-toyota.svg'], ['Mercedes-Benz'], ['BMW', 'brand-bmw.svg'],
+  ['Honda', 'brand-honda.svg'], ['Isuzu'], ['Lexus'], ['Volvo', 'brand-volvo.svg'],
+  ['Nissan', 'brand-nissan.svg'], ['Jeep', 'brand-jeep.svg'], ['Audi', 'brand-audi.svg'],
+  ['Land Rover'],
+]
+
 const serviceGroups = [
   ['Keep it moving', ['Engine diagnostics & repair', 'Transmission repair', 'Exhaust & emissions']],
   ['Keep it controlled', ['Brake services', 'Suspension & steering', 'Wheel alignment & balancing']],
@@ -383,7 +390,7 @@ function App() {
 
         <section className="coverage section">
           <div><p className="eyebrow">Vehicle coverage</p><h2>Familiar with the<br /><i>cars on Kampala roads.</i></h2><p>Bring your vehicle, its symptoms, or its service history. We can start with a practical assessment across common passenger and utility vehicle systems.</p></div>
-          <div className="coverage-list">{['Toyota', 'Mercedes-Benz', 'BMW', 'Honda', 'Nissan', 'Volvo', 'Lexus', 'Jeep', 'Isuzu', 'Land Rover', 'Audi'].map((make) => <span key={make}>{make}</span>)}</div>
+          <div className="coverage-list">{vehicleBrands.map(([make, logo]) => <span key={make}>{logo ? <img src={`/assets/${logo}`} alt="" /> : null}<b>{make}</b></span>)}</div>
         </section>
 
         <section className="specialists section">

@@ -42,6 +42,8 @@ Two workshop photographs are included as authorized source material from [Wamuco
 
 They are used only as supporting workshop imagery within Automotive Expert's own branded experience. The Automotive Expert copy, contacts, logo, and service flow remain distinct; Wamuco-specific history, claims, branding, and contact details are not presented as Automotive Expert facts.
 
+The vehicle-coverage section also includes selected make marks from [Simple Icons](https://simpleicons.org/) for Toyota, BMW, Honda, Volvo, Nissan, Jeep, and Audi. The remaining listed makes are rendered as text labels so the site does not imply an official dealership relationship.
+
 ## Local admin workspace
 
 Open `/admin` (for example `http://localhost:5173/admin`) for the service desk. It includes:
