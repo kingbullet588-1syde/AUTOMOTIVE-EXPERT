@@ -39,10 +39,13 @@ Two workshop photographs are included as authorized source material from [Wamuco
 
 - `public/assets/wamuco-workshop-bg1.jpg` — sourced from `/images/demo/slider/bg1.jpg`
 - `public/assets/wamuco-service-bg2.jpg` — sourced from `/images/demo/slider/bg2.jpg`
+- `public/assets/wamuco-tyre-guide.png` — sourced from `/images/demo/news/tyrews.png`
 
 They are used only as supporting workshop imagery within Automotive Expert's own branded experience. The Automotive Expert copy, contacts, logo, and service flow remain distinct; Wamuco-specific history, claims, branding, and contact details are not presented as Automotive Expert facts.
 
 The vehicle-coverage section also includes selected make marks from [Simple Icons](https://simpleicons.org/) for Toyota, BMW, Honda, Volvo, Nissan, Jeep, and Audi. The remaining listed makes are rendered as text labels so the site does not imply an official dealership relationship.
+
+The public visual system uses a red-and-white palette with dark contrast sections for readability and a more direct workshop feel.
 
 ## Local admin workspace
 
