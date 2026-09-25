@@ -11,12 +11,23 @@ const ADMIN_SESSION_KEY = 'automotive-expert-admin-demo'
 const UPLOADS_KEY = 'automotive-expert-local-uploads'
 
 const services = [
-  ['01', 'Engine Repair', 'Power, performance and reliability restored with a methodical approach.'],
-  ['02', 'Brakes & Suspension', 'Confident stopping and a composed ride, from city streets to long trips.'],
-  ['03', 'A/C Service & Repair', 'Cool, clean air and a cabin that feels right in every season.'],
-  ['04', 'Diagnostics', 'Find the cause, not just the warning light. Clear answers before work begins.'],
-  ['05', 'Preventive Maintenance', 'The small, timely checks that protect your biggest investment.'],
-  ['06', 'Tyres, Alignment & Balancing', 'Straight tracking, even wear and a smoother drive.'],
+  ['01', 'Engine diagnostics & repair', 'Find the cause, then restore performance with a methodical repair plan.'],
+  ['02', 'Brake services', 'Brake inspection, servicing and repairs for confident stopping.'],
+  ['03', 'Wheel alignment & balancing', 'Straight tracking, even wear and a smoother drive.'],
+  ['04', 'Tyre services', 'Tyre checks, fitment and practical advice for the road ahead.'],
+  ['05', 'Suspension & steering', 'Inspect the parts that shape ride comfort, control and direction.'],
+  ['06', 'A/C & heating', 'Keep the cabin comfortable with focused climate-system care.'],
+  ['07', 'Fluid exchanges', 'Coolant, transmission and power-steering fluid service.'],
+  ['08', 'Transmission repair', 'Clear diagnosis and careful attention to shifting concerns.'],
+  ['09', 'Exhaust & emissions', 'Inspect the systems behind quieter, cleaner vehicle operation.'],
+  ['10', 'Preventive maintenance', 'Timely checks that help you stay ahead of avoidable problems.'],
+]
+
+const serviceGroups = [
+  ['Keep it moving', ['Engine diagnostics & repair', 'Transmission repair', 'Exhaust & emissions']],
+  ['Keep it controlled', ['Brake services', 'Suspension & steering', 'Wheel alignment & balancing']],
+  ['Keep it comfortable', ['A/C & heating', 'Tyre services', 'Fluid exchanges']],
+  ['Keep it ready', ['Preventive maintenance']],
 ]
 
 const adminStatuses = ['New', 'Confirmed', 'In service', 'Ready', 'Completed']
@@ -311,9 +322,11 @@ function App() {
         </a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation">Menu</button>
         <nav className={menuOpen ? 'nav-links is-open' : 'nav-links'}>
+          <a href="#top" onClick={() => setMenuOpen(false)}>Home</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
           <a href="#booking" onClick={() => setMenuOpen(false)}>Booking</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
           <a href="/admin" onClick={() => setMenuOpen(false)}>Admin</a>
           <button className="nav-cta" onClick={openTracker}>Check car health <Icon name="arrow" /></button>
         </nav>
@@ -329,6 +342,7 @@ function App() {
               <button className="button button-gold" onClick={openTracker}>Check car health <Icon name="arrow" /></button>
               <a className="text-link" href={`tel:${PHONE}`}>Call {DISPLAY_PHONE} <Icon name="phone" /></a>
             </div>
+            <div className="hero-support"><span><small>Talk to Steven</small><a href={`tel:${PHONE}`}>{DISPLAY_PHONE}</a></span><span><small>Email</small><a href="mailto:stevenclif99@gmail.com">stevenclif99@gmail.com</a></span></div>
             <div className="hero-proof"><span className="proof-line" /><span>CONCERN, CAUSE, CORRECTION.</span></div>
           </div>
           <div className="hero-visual">
@@ -342,14 +356,24 @@ function App() {
 
         <section className="services section" id="services">
           <div className="section-heading"><p className="eyebrow">What we do</p><h2>Precision for the<br /><i>road ahead.</i></h2><p>From a dashboard light to a routine check, we make vehicle care feel less like guesswork and more like a conversation you can trust.</p></div>
-          <div className="service-list">{services.map(([number, title, copy]) => <article className="service-row" key={title}><span className="service-number">{number}</span><h3>{title}</h3><p>{copy}</p><span className="service-arrow"><Icon name="arrow" /></span></article>)}</div>
+          <div className="service-groups">{serviceGroups.map(([group, items]) => <article className="service-group" key={group}><h3>{group}</h3><ul>{items.map((item) => <li key={item}>{item}<Icon name="arrow" /></li>)}</ul></article>)}</div>
         </section>
 
         <section className="trust-strip"><div><strong>Clear answers</strong><span>No guesswork before work begins.</span></div><div><strong>Human service</strong><span>Talk directly with Ntege Steven.</span></div><div><strong>Local care</strong><span>Banamwaya @ Total Energies.</span></div></section>
 
+        <section className="proof-section section">
+          <div className="section-heading"><p className="eyebrow">Why choose Automotive Expert?</p><h2>Good care is<br /><i>easy to understand.</i></h2><p>Our promise is simple: pay attention, explain the finding, and keep the next step clear.</p></div>
+          <div className="proof-grid"><article><span>01</span><h3>Concern first</h3><p>We start with what you notice, not a rushed assumption.</p></article><article><span>02</span><h3>Cause made clear</h3><p>We explain the issue in plain language before correction begins.</p></article><article><span>03</span><h3>Correction with care</h3><p>Work is focused on the vehicle and the road you need it for.</p></article></div>
+        </section>
+
         <section className="approach section" id="about">
           <div className="approach-image"><img src="/assets/mechanic-alignment.jpg" alt="Mechanic checking wheel alignment" /><span className="image-caption">Good work is felt<br />before it is seen.</span></div>
           <div className="approach-copy"><p className="eyebrow">The Automotive Expert way</p><h2>A mechanic who<br /><i>thinks with you.</i></h2><p>There’s no mystery in good vehicle care. Ntege Steven takes time to understand what your car is telling you, explains the options, and gets to work with care.</p><div className="signature"><img src="/assets/mechanic-portrait.jpg" alt="Ntege Steven, Automotive Expert mechanic" /><span><strong>Ntege Steven</strong><small>Mechanic &amp; founder</small></span></div></div>
+        </section>
+
+        <section className="capability section">
+          <div className="capability-image"><img src="/assets/mechanic-workshop.jpg" alt="Automotive Expert workshop capability" /></div>
+          <div className="capability-copy"><p className="eyebrow">Technical capability</p><h2>One workshop for<br /><i>the full picture.</i></h2><p>From wheels and brakes to fluids, climate, drivetrain and emissions, Automotive Expert brings the vehicle’s connected systems into one conversation.</p><div className="capability-tags"><span>Inspection</span><span>Diagnosis</span><span>Repair</span><span>Maintenance</span></div></div>
         </section>
 
         <section className="booking section" id="booking">
